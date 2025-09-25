@@ -23,7 +23,7 @@ class WordTile extends StatelessWidget {
               children: [
                 SizedBox(width: 16),
                 SizedBox(
-                  width: maxWidth - 72, // 16+8+IconButton幅を引いた残り
+                  width: maxWidth - 72,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

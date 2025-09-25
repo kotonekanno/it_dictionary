@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: 'My Dictionary',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
