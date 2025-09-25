@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: MyStatefulWidget(),
+        home: const MyStatefulWidget(),
       ),
     );
   }
@@ -40,17 +40,28 @@ class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidget();
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class _MyStatefulWidget extends State<MyStatefulWidget>{
-  final List<Widget> _screens = [
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final List<Widget> _screens = const [
     HomeScreen(),
     AddWordScreen(),
     SettingScreen(),
   ];
 
   int _selectionIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDefaultWords();
+  }
+
+  Future<void> _loadDefaultWords() async {
+    final wordProvider = context.read<WordProvider>();
+    await wordProvider.loadDefaultWords();
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -62,7 +73,7 @@ class _MyStatefulWidget extends State<MyStatefulWidget>{
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_selectionIndex],
-      appBar: Header(),
+      appBar: const Header(),
       bottomNavigationBar: Footer(
         currentIndex: _selectionIndex,
         onTap: _onItemTapped,

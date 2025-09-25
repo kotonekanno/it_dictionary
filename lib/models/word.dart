@@ -5,10 +5,10 @@ part 'word.g.dart';
 @HiveType(typeId: 0)
 class Word extends HiveObject {
   @HiveField(0)
-  String english;
+  String leftKey;
 
   @HiveField(1)
-  String japanese;
+  String rightKey;
 
-  Word({required this.english, required this.japanese});
+  Word({required this.leftKey, required this.rightKey});
 }

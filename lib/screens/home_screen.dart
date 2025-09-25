@@ -40,7 +40,7 @@ class HomeScreenState extends State<HomeScreen>{
         builder: (context) => AlertDialog(
           title: Text('Delete Word?',style: TextStyle(fontFamily: 'SUSEMono')),
           content: Text(
-            'Are you sure to delete "${word.english}"?',style: TextStyle(fontSize: 16),
+            'Are you sure to delete "${word.leftKey}"?',style: TextStyle(fontSize: 16),
           ),
           actions: [
             TextButton(

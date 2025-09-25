@@ -29,14 +29,14 @@ class WordTile extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          word.english,
+                          word.leftKey,
                           style: TextStyle(fontSize: 16,fontFamily: 'SUSEMono'),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       Flexible(
                         child: Text(
-                          word.japanese,
+                          word.rightKey,
                           style: TextStyle(fontSize: 14),
                           overflow: TextOverflow.ellipsis
                         ),

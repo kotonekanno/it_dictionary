@@ -69,6 +69,9 @@ flutter:
     - family: SUSEMono
       fonts:
         - asset: assets/fonts/SUSEMono-Regular.ttf
+  
+  assets: 
+    - assets/default_words.csv
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -4,17 +4,17 @@ import '../providers/word_provider.dart';
 
 Future<void> onAddPressed(
   BuildContext context,
-  String english,
-  String japanese,
+  String leftKey,
+  String rightKey,
   TextEditingController englishController,
   TextEditingController japaneseController,
   FocusNode englishFocus,
 ) async {
   final wordProvider = context.read<WordProvider>();
   
-  if (english.isNotEmpty && japanese.isNotEmpty) {
+  if (leftKey.isNotEmpty && rightKey.isNotEmpty) {
     
-    await wordProvider.addWord(english, japanese);
+    await wordProvider.addWord(leftKey, rightKey);
 
     englishController.clear();
     japaneseController.clear();
@@ -22,7 +22,7 @@ Future<void> onAddPressed(
     englishFocus.requestFocus();
   
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('"$english" added')),
+      SnackBar(content: Text('"$leftKey" added')),
     );
   } else {
     ScaffoldMessenger.of(context).showSnackBar(

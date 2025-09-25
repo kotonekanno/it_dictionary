@@ -5,8 +5,10 @@ import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   Hive.registerAdapter(WordAdapter());
   await Hive.openBox<Word>('words');
-  runApp(MyApp());
+
+  runApp(const MyApp());
 }

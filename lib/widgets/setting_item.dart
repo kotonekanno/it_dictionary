@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../providers/setting_provider.dart';
 
 class SettingItem extends StatelessWidget {
   final String label;
@@ -107,57 +105,3 @@ class TextSettingItem extends StatelessWidget {
     );
   }
 }
-/*
-class AppTitleSetting extends StatelessWidget {
-  final TextEditingController controller;
-  const AppTitleSetting({required this.controller, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final settingProvider = context.watch<SettingProvider>();
-    return SettingItem(
-      label: 'Change the prefix of app title',
-      inputWidget: TextField(
-        controller: controller,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-        ),
-      ),
-      onSave: () {
-        if (controller.text.isNotEmpty) {
-          settingProvider.setAppTitle(controller.text.trim());
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Title updated')),
-          );
-        }
-      }
-    );
-  }
-}
-
-class LeftKeySetting extends StatelessWidget {
-  final TextEditingController controller;
-  const LeftKeySetting ({required this.controller, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final settingProvider = context.watch<SettingProvider>();
-    return SettingItem(
-      label: 'Change the left key',
-      inputWidget: TextField(
-        controller: controller,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-        ),
-      ),
-      onSave: () {
-        if(controller.text.isNotEmpty) {
-          settingProvider.setLeftKey(controller.text.trim());
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Left key updated')),
-          );
-        }
-      }
-    );
-  } 
-}*/
