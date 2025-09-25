@@ -38,7 +38,7 @@ class SettingItem extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               if(onSave != null)
-                TextButton(
+                ElevatedButton(
                   onPressed: onSave,
                   child: const Text('Save')
                 ),
@@ -57,7 +57,7 @@ class SettingItem extends StatelessWidget {
                 child: inputWidget,
               ),
               if(onSave != null)
-                TextButton(
+                ElevatedButton(
                   onPressed: onSave,
                   child: const Text('Save')
                 ),

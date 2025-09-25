@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: isWide ? EdgeInsets.symmetric(vertical: 5) : EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                     child: TextField(
                       decoration: InputDecoration(
                         labelText: 'Search',
@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                       onChanged: (value) => wordProvider.search(value),
                     ),
                   ),
+                  SizedBox(height: 5),
                   Expanded(
                     child: ListView.builder(
                       itemCount: wordProvider.words.length,

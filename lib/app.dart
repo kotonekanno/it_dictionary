@@ -23,6 +23,11 @@ class MyApp extends StatelessWidget {
         title: 'My Dictionary',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.indigo,
+            ),
+          ),
         ),
         home: MyStatefulWidget(),
       ),
