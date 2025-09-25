@@ -77,7 +77,7 @@ class HomeScreenState extends State<HomeScreen>{
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
               child: TextField(
                 decoration: InputDecoration(
                   labelText: 'Search',

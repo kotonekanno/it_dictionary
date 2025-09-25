@@ -40,7 +40,7 @@ class HiveService {
   // Export to CSV
   Future<void> exportToCSV(List<Word> words) async {
     List<List<String>> rows = [
-      ["English", "Japanese"],
+      ["leftKey", "rightKey"],
       ...words.map((w) => [w.english, w.japanese]),
     ];
 

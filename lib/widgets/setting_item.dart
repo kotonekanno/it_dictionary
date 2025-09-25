@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:it_dictionary/providers/word_provider.dart';
 import '../providers/setting_provider.dart';
 
 class SettingItem extends StatelessWidget {
@@ -72,6 +71,43 @@ class SettingItem extends StatelessWidget {
   }
 }
 
+class TextSettingItem extends StatelessWidget {
+  final String label;
+  final String snackBarMessage;
+  final TextEditingController controller;
+  final void Function(String value) onSave;
+
+  const TextSettingItem({
+    required this.label,
+    required this.snackBarMessage,
+    required this.controller,
+    required this.onSave,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingItem(
+      label: label,
+      inputWidget: TextField(
+        controller: controller,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+      ),
+      onSave: () {
+        if (controller.text.isNotEmpty) {
+          final value = controller.text.trim();
+          onSave(value);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(snackBarMessage)),
+          );
+        }
+      },
+    );
+  }
+}
+/*
 class AppTitleSetting extends StatelessWidget {
   final TextEditingController controller;
   const AppTitleSetting({required this.controller, super.key});
@@ -89,7 +125,7 @@ class AppTitleSetting extends StatelessWidget {
       ),
       onSave: () {
         if (controller.text.isNotEmpty) {
-          settingProvider.setAppPrefix(controller.text.trim());
+          settingProvider.setAppTitle(controller.text.trim());
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Title updated')),
           );
@@ -99,23 +135,29 @@ class AppTitleSetting extends StatelessWidget {
   }
 }
 
-class DeleteSetting extends StatelessWidget {
-  const DeleteSetting({super.key});
+class LeftKeySetting extends StatelessWidget {
+  final TextEditingController controller;
+  const LeftKeySetting ({required this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
+    final settingProvider = context.watch<SettingProvider>();
     return SettingItem(
-      label: 'Confirm before delete',
-      inputWidget: Switch(
-        activeTrackColor: Colors.indigo,
-        value: context.watch<SettingProvider>().confirmBeforeDelete,
-        onChanged: (val) {
-          context.read<SettingProvider>().setConfirmBeforeDelete(val);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Update confirmation setting')),
-          );
-        },
+      label: 'Change the left key',
+      inputWidget: TextField(
+        controller: controller,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
       ),
+      onSave: () {
+        if(controller.text.isNotEmpty) {
+          settingProvider.setLeftKey(controller.text.trim());
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Left key updated')),
+          );
+        }
+      }
     );
-  }
-}
+  } 
+}*/
