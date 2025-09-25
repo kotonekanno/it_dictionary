@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/setting_provider.dart';
+import '../widgets/centered_max_width.dart';
 import '../ui/setting_item.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -16,39 +17,45 @@ class SettingScreen extends StatelessWidget {
         title: Text('Setting'),
         centerTitle: true,
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          final bool isWide = constraints.maxWidth > 800;
-
-          return Align(
-            alignment: Alignment.center,
-            child: SizedBox(
-              width: isWide ? 800 : constraints.maxWidth,
-              child: Column(
-                children: [
-                  SettingItem(
-                    label: 'Change the prefix of app title',
-                    inputWidget: TextField(
-                      controller: controller,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    onSave: () {
-                      if (controller.text.isNotEmpty) {
-                        wordProvider.setAppPrefix(controller.text.trim());
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Title updated')),
-                        );
-                      }
-                    }
-                  ),
-                  SizedBox(height: 16),
-                ],
+      body: CenteredMaxWidth(
+        maxWidth: 800,
+        child: Column(
+          children: [
+            Divider(height: 30),
+            SettingItem(
+              label: 'Change the prefix of app title',
+              inputWidget: TextField(
+                controller: controller,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              onSave: () {
+                if (controller.text.isNotEmpty) {
+                  wordProvider.setAppPrefix(controller.text.trim());
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Title updated')),
+                  );
+                }
+              }
+            ),
+            Divider(height: 30),
+            SettingItem(
+              label: 'Confirm before delete',
+              inputWidget: Switch(
+                activeTrackColor: Colors.indigo,
+                value: context.watch<SettingProvider>().confirmBeforeDelete,
+                onChanged: (val) {
+                  context.read<SettingProvider>().setConfirmBeforeDelete(val);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Update confirmation setting')),
+                  );
+                },
               ),
             ),
-          );
-        }
+            Divider(height: 30),
+          ],
+        ),
       )
     );
   }

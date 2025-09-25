@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import '../providers/word_provider.dart';
+import '../widgets/centered_max_width.dart';
 
 class AddWordScreen extends StatefulWidget {
   const AddWordScreen({super.key});
@@ -53,99 +54,95 @@ class AddWordScreenState extends State<AddWordScreen> {
         title: Text('Add New Word'),
         centerTitle: true,
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          final bool isWide = constraints.maxWidth > 600;
-
-          return Shortcuts(
-            shortcuts: <LogicalKeySet, Intent>{
-              LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
+      body: CenteredMaxWidth(
+        maxWidth: 600,
+        child: Shortcuts(
+          shortcuts: <LogicalKeySet, Intent>{
+            LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
+          },
+          child: Actions(
+            actions: <Type, Action<Intent>>{
+              ActivateIntent: CallbackAction<ActivateIntent>(
+                onInvoke: (intent) {
+                  onAddPressed(context);
+                  return null;
+                },
+              ),
             },
-            child: Actions(
-              actions: <Type, Action<Intent>>{
-                ActivateIntent: CallbackAction<ActivateIntent>(
-                  onInvoke: (intent) {
-                    onAddPressed(context);
-                    return null;
-                  },
-                ),
-              },
-              child: Container(
-                alignment: Alignment.center,
-                child: Container(
-                  padding: isWide ? EdgeInsets.symmetric(vertical: 5) : EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-                  width: isWide ? 600 : constraints.maxWidth,
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _englishController,
-                        focusNode: _englishFocus,
-                        decoration: InputDecoration(
-                          labelText: 'English',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      TextField(
-                        controller: _japaneseController,
-                        decoration: InputDecoration(
-                          labelText: 'Japanese',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 24),
-                      ElevatedButton(
-                        onPressed: () => onAddPressed(context),
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(100, 50),
-                          backgroundColor: const Color.fromARGB(255, 203, 211, 255),
-                          textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        child: const Text('Add'),
-                      ),
-                      Divider(height: 60),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () async {
-                              await context.read<WordProvider>().exportWords();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('CSV exported'))
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                              foregroundColor: Colors.white,
-                              fixedSize: const Size(200, 40),
-                              textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                            child: Text('Export to CSV'),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              await context.read<WordProvider>().importWords();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('CSV imported'))
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.indigo,
-                              foregroundColor: Colors.white,
-                              fixedSize: const Size(200, 40),
-                              textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                            child: Text('Import from CSV'),
-                          )
-                        ],
-                      )
-                    ],
+            child:Column(
+              children: [
+                Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: TextField(
+                    controller: _englishController,
+                    focusNode: _englishFocus,
+                    decoration: InputDecoration(
+                      labelText: 'English',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-                )
-              )
-            )
-          );
-        }
+                ),
+                SizedBox(height: 16),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: TextField(
+                    controller: _japaneseController,
+                    decoration: InputDecoration(
+                      labelText: 'Japanese',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () => onAddPressed(context),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(100, 50),
+                    backgroundColor: const Color.fromARGB(255, 203, 211, 255),
+                    textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  child: const Text('Add'),
+                ),
+                Divider(height: 60),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () async {
+                        await context.read<WordProvider>().exportWords();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('CSV exported'))
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        foregroundColor: Colors.white,
+                        fixedSize: const Size(200, 40),
+                        textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      child: Text('Export to CSV'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await context.read<WordProvider>().importWords();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('CSV imported'))
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        foregroundColor: Colors.white,
+                        fixedSize: const Size(200, 40),
+                        textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      child: Text('Import from CSV'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
