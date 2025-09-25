@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'dart:io';
 import '../providers/word_provider.dart';
 
 class AddWordScreen extends StatefulWidget {
   const AddWordScreen({super.key});
 
   @override
-  _AddWordScreenState createState() => _AddWordScreenState();
+  AddWordScreenState createState() => AddWordScreenState();
 }
 
-class _AddWordScreenState extends State<AddWordScreen> {
+class AddWordScreenState extends State<AddWordScreen> {
   final _englishController = TextEditingController();
   final _japaneseController = TextEditingController();
 
@@ -82,12 +84,48 @@ class _AddWordScreenState extends State<AddWordScreen> {
                     ),
                     child: const Text('Add'),
                   ),
+                  Divider(height: 60),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await context.read<WordProvider>().exportWords();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('CSV exported'))
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          foregroundColor: Colors.white,
+                          fixedSize: const Size(200, 40),
+                          textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        child: Text('Export to CSV'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await context.read<WordProvider>().importWords();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('CSV imported'))
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.indigo,
+                          foregroundColor: Colors.white,
+                          fixedSize: const Size(200, 40),
+                          textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        child: Text('Import from CSV'),
+                      )
+                    ],
+                  )
                 ],
               ),
             )
           );
         }
-      )
+      ),
     );
   }
 }

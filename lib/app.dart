@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.indigo,
+              elevation: 5,
             ),
           ),
         ),
