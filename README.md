@@ -15,7 +15,7 @@
 
 ## Overview
 
-This is a customizable dictionary app build with **Flutter**.
+This is a customizable dictionary app build with **Flutter**.  
 It is designed to quickly connect short words in a one-to-one manner, making it especially useful for technical terms.
 
 ## Features
