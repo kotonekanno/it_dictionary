@@ -68,64 +68,6 @@ class HomeScreenState extends State<HomeScreen>{
       ),
       body: CenteredMaxWidth(
         maxWidth: 600,
-<<<<<<< HEAD
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (value) => _onSearchChanged(value, wordProvider),
-              ),
-            ),
-            Divider(height: 30, indent: 50, endIndent: 50,),
-            Expanded(
-              child: Consumer<WordProvider>(
-                builder: (context, wordProvider, _) => ListView.builder(
-                  itemCount: wordProvider.words.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == 0){
-                      return CenteredMaxWidth(
-                        maxWidth: 400,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 30),
-                              child: SizedBox(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(leftKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 70),  // IconButton40 + 30
-                                      child:Text(rightKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Divider(
-                                height: 20,
-                                thickness: 0.5,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    final word = wordProvider.words[index - 1];
-                    return WordTile(
-                      word: word,
-                      onDelete: () => _confirmAndDelete(context, index - 1, word),
-                    );
-                  },
-=======
         child: LayoutBuilder(
           builder: (context, constraints) {
             return Column(
@@ -141,8 +83,6 @@ class HomeScreenState extends State<HomeScreen>{
                   ),
                 ),
                 Divider(height: 30, indent: 50, endIndent: 50),
-
-                // 👇 ここだけスクロール可能にする
                 Expanded(
                   child: Consumer<WordProvider>(
                     builder: (context, wordProvider, _) => ListView.builder(
@@ -187,7 +127,6 @@ class HomeScreenState extends State<HomeScreen>{
                       },
                     ),
                   ),
->>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
                 ),
               ],
             );

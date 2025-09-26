@@ -69,10 +69,7 @@ flutter:
     - family: SUSEMono
       fonts:
         - asset: assets/fonts/SUSEMono-Regular.ttf
-<<<<<<< HEAD
-=======
   
->>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
   assets: 
     - assets/default_words.csv
 

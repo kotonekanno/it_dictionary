@@ -63,17 +63,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     await wordProvider.loadDefaultWords();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _loadDefaultWords();
-  }
-
-  Future<void> _loadDefaultWords() async {
-    final wordProvider = context.read<WordProvider>();
-    await wordProvider.loadDefaultWords();
-  }
-
   void _onItemTapped(int index) {
     setState(() {
       _selectionIndex = index;

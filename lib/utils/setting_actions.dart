@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/setting_provider.dart';
-<<<<<<< HEAD
-import '../widgets/setting_item.dart';
-=======
 import '../providers/word_provider.dart';
 import '../widgets/setting_item.dart';
 import '../widgets/custom_dialog.dart';
->>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
 
 class DeleteSetting extends StatelessWidget {
   const DeleteSetting({super.key});
@@ -28,8 +24,6 @@ class DeleteSetting extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
-=======
 }
 
 class DeleteAll extends StatelessWidget {
@@ -63,5 +57,4 @@ class DeleteAll extends StatelessWidget {
       ),
     );
   }
->>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
 }
