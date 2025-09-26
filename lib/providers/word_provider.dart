@@ -66,6 +66,12 @@ class WordProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  //Sort words
+  void sortWords() {
+    _words.sort((a, b) => a.mainKey.toLowerCase().compareTo(b.mainKey.toLowerCase()));
+    notifyListeners();
+  }
   
   // Import / Export
   Future<void> exportWords() async {

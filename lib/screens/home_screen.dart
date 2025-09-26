@@ -14,6 +14,18 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Search Word'), centerTitle: true),
+      floatingActionButton:
+        FloatingActionButton(
+          onPressed: () {
+            context.read<WordProvider>().sortWords();
+          },
+          tooltip: 'Sort alphabetically',
+          backgroundColor: const Color.fromARGB(255, 81, 96, 182),
+          foregroundColor: Colors.white,
+          shape: CircleBorder(),
+          elevation: 8,
+          child: Icon(Icons.sort)
+        ),
       body: CenteredMaxWidth(
         maxWidth: 600,
         child: Column(

@@ -15,7 +15,7 @@ class WordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CenteredMaxWidth(
-      maxWidth: 400,
+      maxWidth: 600,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final maxWidth = constraints.maxWidth;
@@ -92,6 +92,7 @@ class WordListWidget extends StatelessWidget {
     return Consumer<WordProvider>(
       builder: (context, wordProvider, _) {
         return ListView.builder(
+          padding: EdgeInsets.only(bottom: 100),
           itemCount: wordProvider.words.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -122,7 +123,7 @@ class WordListWidget extends StatelessWidget {
               word: word,
               onDelete: () => _confirmAndDelete(context, index - 1, word),
             );
-          },
+          }
         );
       },
     );
