@@ -54,6 +54,12 @@ class WordProvider extends ChangeNotifier {
     await _hiveService.deleteWord(index);
     loadAllWords();
   }
+  
+  // Delete all words
+  Future<void> deleteAllWords() async {
+    await _hiveService.deleteAllWords();
+    loadAllWords();
+  }
 
   // Search word
   void search(String query) {

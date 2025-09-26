@@ -21,13 +21,19 @@ class HiveService {
     await box.deleteAt(index);
   }
 
+  // Delete all words
+  Future<void> deleteAllWords() async {
+    final box = Hive.box<Word>('words');
+    await box.clear();
+  }
+
   //Get all words
   List<Word> getAllWords() {
     final box = getBox();
     return box.values.toList();
   }
 
-  //Search word
+  // Search word
   List<Word> searchWords(String query) {
     final box = getBox();
     final lowerQuery = query.toLowerCase();

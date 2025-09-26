@@ -41,9 +41,12 @@ class SettingItem extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               if(onSave != null)
-                ElevatedButton(
-                  onPressed: onSave,
-                  child: const Text('Save')
+                Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: ElevatedButton(
+                    onPressed: onSave,
+                    child: const Text('Save')
+                  ),
                 ),
             ],
           );

@@ -41,19 +41,11 @@ class HomeScreenState extends State<HomeScreen>{
         builder: (context) => CustomDialog(
           title: 'Delete Word?',
           content: 'Are you sure to delete "${word.leftKey}"?',
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text('Cancel',style: TextStyle(color: Colors.indigo)),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text('Delete',style: TextStyle(color: Colors.indigo)),
-            ),
-          ],
+          doText: 'Delete',
+          doFunction: () {Navigator.pop(context, true);},
         )
       );
-
+      
       shouldDelete = confirm == true;
     }
 

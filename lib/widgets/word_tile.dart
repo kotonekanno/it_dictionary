@@ -45,7 +45,7 @@ class WordTile extends StatelessWidget {
               SizedBox(width: 30),
               IconButton(
                 icon: Icon(Icons.delete, color: Colors.black),
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.symmetric(vertical: 5),
                 constraints: BoxConstraints(),
                 onPressed: onDelete,
               ),
