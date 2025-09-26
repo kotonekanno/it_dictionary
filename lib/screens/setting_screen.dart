@@ -60,6 +60,11 @@ class SettingScreen extends StatelessWidget {
               dividerWithPadding,
               DeleteSetting(),
               dividerWithPadding,
+<<<<<<< HEAD
+=======
+              DeleteAll(),
+              dividerWithPadding,
+>>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
             ],
           ),
         ),

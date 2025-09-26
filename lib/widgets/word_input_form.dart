@@ -27,7 +27,10 @@ class WordInputForm extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
+<<<<<<< HEAD
           
+=======
+>>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
           child: Padding(
             padding: EdgeInsets.only(top: 10),
             child: TextField(

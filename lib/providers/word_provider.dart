@@ -14,9 +14,31 @@ class WordProvider extends ChangeNotifier {
     loadAllWords();
   }
 
+<<<<<<< HEAD
   List<Word> get words => _words;
 
   // Load all words from Hive
+=======
+  // Load default words
+  final Box<Word> _box = Hive.box<Word>('words');
+  List<Word> get words => _box.values.toList();
+
+  Future<void> loadDefaultWords() async {
+    if (_box.isEmpty) {
+      final csvString = await rootBundle.loadString('assets/default_words.csv');
+      final rows = const LineSplitter().convert(csvString);
+      for (var row in rows.sublist(1)) {
+        final parts = row.split(',');
+        if (parts.length >= 2) {
+          await _box.add(Word(leftKey: parts[0], rightKey: parts[1]));
+        }
+      }
+      notifyListeners();
+    }
+  }
+
+  // Load all words
+>>>>>>> bc7733f10f52afc4a2accec05ea3e22b7a03f63f
   Future<void> loadAllWords() async {
     _words = _hiveService.getAllWords();
     notifyListeners();
@@ -55,6 +77,12 @@ class WordProvider extends ChangeNotifier {
   Future<void> deleteAllWords() async {
     await _hiveService.deleteAllWords();
     await loadAllWords();
+  }
+
+  // Delete all words
+  Future<void> deleteAllWords() async {
+    await _hiveService.deleteAllWords();
+    loadAllWords();
   }
 
   // Search word

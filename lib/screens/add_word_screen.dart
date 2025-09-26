@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../widgets/centered_max_width.dart';
-import '../utils/word_actions.dart';
+import '../utils/add_word_actions.dart';
 import '../widgets/word_input_form.dart';
 
 class AddWordScreen extends StatefulWidget {
