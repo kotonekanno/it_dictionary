@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/setting_provider.dart';
 import '../utils/csv_actions.dart';
 
 class WordInputForm extends StatelessWidget {
@@ -18,16 +20,23 @@ class WordInputForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final leftKey = context.watch<SettingProvider>().leftKey;
+    final rightKey = context.watch<SettingProvider>().rightKey;
+
     return Column(
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
-          child: TextField(
-            controller: englishController,
-            focusNode: englishFocus,
-            decoration: InputDecoration(
-              labelText: 'English',
-              border: OutlineInputBorder(),
+          
+          child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: TextField(
+              controller: englishController,
+              focusNode: englishFocus,
+              decoration: InputDecoration(
+                labelText: leftKey,
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
         ),
@@ -37,7 +46,7 @@ class WordInputForm extends StatelessWidget {
           child: TextField(
             controller: japaneseController,
             decoration: InputDecoration(
-              labelText: 'Japanese',
+              labelText: rightKey,
               border: OutlineInputBorder(),
             ),
           ),

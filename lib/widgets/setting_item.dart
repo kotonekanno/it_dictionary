@@ -72,6 +72,43 @@ class SettingItem extends StatelessWidget {
   }
 }
 
+class TextSettingItem extends StatelessWidget {
+  final String label;
+  final String snackBarMessage;
+  final TextEditingController controller;
+  final void Function(String value) onSave;
+
+  const TextSettingItem({
+    required this.label,
+    required this.snackBarMessage,
+    required this.controller,
+    required this.onSave,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingItem(
+      label: label,
+      inputWidget: TextField(
+        controller: controller,
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+      ),
+      onSave: () {
+        if (controller.text.isNotEmpty) {
+          final value = controller.text.trim();
+          onSave(value);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(snackBarMessage)),
+          );
+        }
+      },
+    );
+  }
+}
+/*
 class AppTitleSetting extends StatelessWidget {
   final TextEditingController controller;
   const AppTitleSetting({required this.controller, super.key});
@@ -118,4 +155,4 @@ class DeleteSetting extends StatelessWidget {
       ),
     );
   }
-}
+}*/

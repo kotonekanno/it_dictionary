@@ -41,6 +41,7 @@ class WordProvider extends ChangeNotifier {
     }
   }
   
+  // Import / Export
   Future<void> exportWords() async {
     await _hiveService.exportToCSV(_words);
   }
