@@ -40,21 +40,18 @@ class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({super.key});
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidget();
-  //State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class _MyStatefulWidget extends State<MyStatefulWidget>{
-  final List<Widget> _screens = [
-//class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  //final List<Widget> _screens = const [
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final List<Widget> _screens = const [
     HomeScreen(),
     AddWordScreen(),
     SettingScreen(),
   ];
 
   int _selectionIndex = 0;
-  /*
+  
   @override
   void initState() {
     super.initState();
@@ -64,7 +61,7 @@ class _MyStatefulWidget extends State<MyStatefulWidget>{
   Future<void> _loadDefaultWords() async {
     final wordProvider = context.read<WordProvider>();
     await wordProvider.loadDefaultWords();
-  }*/
+  }
 
   void _onItemTapped(int index) {
     setState(() {

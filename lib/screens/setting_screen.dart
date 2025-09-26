@@ -16,7 +16,6 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final wordProvider = context.watch<SettingProvider>();
-    //final controller = TextEditingController(text: wordProvider.appPrefix);
     final appTitleController = TextEditingController(text: wordProvider.appTitle);
     final leftKeyController = TextEditingController(text: wordProvider.leftKey);
     final rightKeyController = TextEditingController(text: wordProvider.rightKey);
@@ -32,7 +31,6 @@ class SettingScreen extends StatelessWidget {
           child: Column(
             children: [
               dividerWithPadding,
-              //AppTitleSetting(controller: controller),
               TextSettingItem(
                 label: 'Change the prefix of app title',
                 snackBarMessage: 'Title updated',

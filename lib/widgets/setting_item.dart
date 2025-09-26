@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:it_dictionary/providers/word_provider.dart';
-import '../providers/setting_provider.dart';
 
 class SettingItem extends StatelessWidget {
   final String label;

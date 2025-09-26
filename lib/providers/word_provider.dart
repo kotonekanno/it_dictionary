@@ -9,56 +9,52 @@ class WordProvider extends ChangeNotifier {
   final HiveService _hiveService = HiveService();
 
   List<Word> _words = [];
-  List<Word> get words => _words;
 
   WordProvider() {
     loadAllWords();
   }
 
-  // Load default words
-  /*final Box<Word> _box = Hive.box<Word>('words');
-  List<Word> get words => _box.values.toList();
+  List<Word> get words => _words;
 
-  Future<void> loadDefaultWords() async {
-    if (_box.isEmpty) {
-      final csvString = await rootBundle.loadString('assets/default_words.csv');
-      final rows = const LineSplitter().convert(csvString);
-      for (var row in rows) {
-        final parts = row.split(',');
-        if (parts.length >= 2) {
-          await _box.add(Word(leftKey: parts[0], rightKey: parts[1]));
-        }
-      }
-      notifyListeners();
-    }
-  }*/
-
-  // Load all words
-  //void loadAllWords() {
+  // Load all words from Hive
   Future<void> loadAllWords() async {
     _words = _hiveService.getAllWords();
     notifyListeners();
   }
 
+  // Load default words (only if empty)
+  Future<void> loadDefaultWords() async {
+    final box = Hive.box<Word>('words');
+    if (box.isEmpty) {
+      final csvString = await rootBundle.loadString('assets/default_words.csv');
+      final rows = const LineSplitter().convert(csvString);
+      for (var row in rows.sublist(1)) {
+        final parts = row.split(',');
+        if (parts.length >= 2) {
+          await box.add(Word(leftKey: parts[0], rightKey: parts[1]));
+        }
+      }
+      await loadAllWords();
+    }
+  }
+
   // Add word
-  //Future<void> addWord(String english, String japanese) async {
-    //final word = Word(english: english, japanese: japanese);
   Future<void> addWord(String leftKey, String rightKey) async {
     final word = Word(leftKey: leftKey, rightKey: rightKey);
     await _hiveService.addWord(word);
-    loadAllWords();
+    await loadAllWords();
   }
 
   // Delete word
   Future<void> deleteWord(int index) async {
     await _hiveService.deleteWord(index);
-    loadAllWords();
+    await loadAllWords();
   }
   
   // Delete all words
   Future<void> deleteAllWords() async {
     await _hiveService.deleteAllWords();
-    loadAllWords();
+    await loadAllWords();
   }
 
   // Search word

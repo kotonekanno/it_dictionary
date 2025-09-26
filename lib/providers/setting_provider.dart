@@ -2,14 +2,6 @@ import 'package:flutter/material.dart';
 
 class SettingProvider extends ChangeNotifier {
   // Change app title
-  /*
-  String _appPrefix = 'IT';
-  String get appPrefix => _appPrefix;
-  void setAppPrefix(String newPrefix) {
-    _appPrefix = newPrefix;
-    notifyListeners();
-  }*/
-
   String _appTitle = 'IT';
   String get appTitle => _appTitle;
   void setAppTitle(String newTitle) {

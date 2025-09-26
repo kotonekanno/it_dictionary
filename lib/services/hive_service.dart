@@ -27,7 +27,7 @@ class HiveService {
     await box.clear();
   }
 
-  //Get all words
+  // Get all words
   List<Word> getAllWords() {
     final box = getBox();
     return box.values.toList();
@@ -40,8 +40,6 @@ class HiveService {
     return box.values.where((word) =>
       word.leftKey.toLowerCase().contains(lowerQuery) ||
       word.rightKey.contains(lowerQuery)
-      //word.english.toLowerCase().contains(lowerQuery) ||
-      //word.japanese.contains(lowerQuery)
     ).toList();
   }
 
@@ -50,7 +48,6 @@ class HiveService {
     List<List<String>> rows = [
       ["leftKey", "rightKey"],
       ...words.map((w) => [w.leftKey, w.rightKey]),
-      //...words.map((w) => [w.english, w.japanese]),
     ];
 
     String csvData = const ListToCsvConverter().convert(rows);
@@ -87,8 +84,6 @@ class HiveService {
           final word = Word(
             leftKey: row[0].toString(),
             rightKey: row[1].toString(),
-            //english: row[0].toString(),
-            //japanese: row[1].toString(),
           );
           await addWord(word);
         }
