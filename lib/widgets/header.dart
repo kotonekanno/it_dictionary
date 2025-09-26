@@ -10,12 +10,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final prefix = context.watch<SettingProvider>().appPrefix;
     final title = context.watch<SettingProvider>().appTitle;
 
     return AppBar(
       title: Text(
-        //'$prefix Dictionary',
         '$title Dictionary',
         style: TextStyle(
           color: Colors.white,

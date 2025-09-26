@@ -32,8 +32,10 @@ class HiveService {
     final box = getBox();
     final lowerQuery = query.toLowerCase();
     return box.values.where((word) =>
-      word.english.toLowerCase().contains(lowerQuery) ||
-      word.japanese.contains(lowerQuery)
+      word.leftKey.toLowerCase().contains(lowerQuery) ||
+      word.rightKey.contains(lowerQuery)
+      //word.english.toLowerCase().contains(lowerQuery) ||
+      //word.japanese.contains(lowerQuery)
     ).toList();
   }
 
@@ -41,7 +43,8 @@ class HiveService {
   Future<void> exportToCSV(List<Word> words) async {
     List<List<String>> rows = [
       ["leftKey", "rightKey"],
-      ...words.map((w) => [w.english, w.japanese]),
+      ...words.map((w) => [w.leftKey, w.rightKey]),
+      //...words.map((w) => [w.english, w.japanese]),
     ];
 
     String csvData = const ListToCsvConverter().convert(rows);
@@ -76,28 +79,14 @@ class HiveService {
         final row = rows[i];
         if (row.length >= 2) {
           final word = Word(
-            english: row[0].toString(),
-            japanese: row[1].toString(),
+            leftKey: row[0].toString(),
+            rightKey: row[1].toString(),
+            //english: row[0].toString(),
+            //japanese: row[1].toString(),
           );
           await addWord(word);
         }
       }
     }
-
-    /*
-    final csvData = await file.readAsString();
-    List<List<dynamic>> rows = const CsvToListConverter().convert(csvData);
-
-    for (int i = 1; i < rows.length; i++) {
-      final row = rows[i];
-      if (row.length >= 2) {
-        final word = Word(
-          english: row[0].toString(),
-          japanese: row[1].toString(),
-        );
-        await addWord(word);
-      }
-    }
-    */
   }
 }

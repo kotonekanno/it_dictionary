@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:it_dictionary/widgets/centered_max_width.dart';
 import '../models/word.dart';
 
 class WordTile extends StatelessWidget {
@@ -9,34 +10,30 @@ class WordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final double maxWidth = constraints.maxWidth < 350 ? constraints.maxWidth : 350;
-
-        return Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: maxWidth,
-            padding: EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(width: 16),
-                SizedBox(
-                  width: maxWidth - 72,
+    return CenteredMaxWidth(
+      maxWidth: 400,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          return Row(
+            children: [
+              SizedBox(
+                width: maxWidth - 90,  // IconButton = 40
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
                         child: Text(
-                          word.english,
+                          word.leftKey,
                           style: TextStyle(fontSize: 16,fontFamily: 'SUSEMono'),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       Flexible(
                         child: Text(
-                          word.japanese,
+                          word.rightKey,
                           style: TextStyle(fontSize: 14),
                           overflow: TextOverflow.ellipsis
                         ),
@@ -44,18 +41,18 @@ class WordTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 16),
-                IconButton(
-                  icon: Icon(Icons.delete, color: Colors.red),
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(),
-                  onPressed: onDelete,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+              ),
+              SizedBox(width: 30),
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.black),
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
+                onPressed: onDelete,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
