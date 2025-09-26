@@ -22,7 +22,7 @@ class WordProvider extends ChangeNotifier {
     if (_box.isEmpty) {
       final csvString = await rootBundle.loadString('assets/default_words.csv');
       final rows = const LineSplitter().convert(csvString);
-      for (var row in rows) {
+      for (var row in rows.sublist(1)) {
         final parts = row.split(',');
         if (parts.length >= 2) {
           await _box.add(Word(leftKey: parts[0], rightKey: parts[1]));

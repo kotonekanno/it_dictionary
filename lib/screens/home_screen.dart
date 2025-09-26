@@ -5,6 +5,7 @@ import '../providers/word_provider.dart';
 import '../providers/setting_provider.dart';
 import '../widgets/centered_max_width.dart';
 import '../widgets/word_tile.dart';
+import '../widgets/custom_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,11 +38,9 @@ class HomeScreenState extends State<HomeScreen>{
     if (setting.confirmBeforeDelete) {
       final confirm = await showDialog<bool>(
         context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Delete Word?',style: TextStyle(fontFamily: 'SUSEMono')),
-          content: Text(
-            'Are you sure to delete "${word.leftKey}"?',style: TextStyle(fontSize: 16),
-          ),
+        builder: (context) => CustomDialog(
+          title: 'Delete Word?',
+          content: 'Are you sure to delete "${word.leftKey}"?',
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
@@ -52,7 +51,7 @@ class HomeScreenState extends State<HomeScreen>{
               child: Text('Delete',style: TextStyle(color: Colors.indigo)),
             ),
           ],
-        ),
+        )
       );
 
       shouldDelete = confirm == true;
@@ -66,6 +65,9 @@ class HomeScreenState extends State<HomeScreen>{
   @override
   Widget build(BuildContext context) {
     final wordProvider = Provider.of<WordProvider>(context);
+
+    final leftKey = context.watch<SettingProvider>().leftKey;
+    final rightKey = context.watch<SettingProvider>().rightKey;
 
     return Scaffold(
       appBar: AppBar(
@@ -90,12 +92,44 @@ class HomeScreenState extends State<HomeScreen>{
             Expanded(
               child: Consumer<WordProvider>(
                 builder: (context, wordProvider, _) => ListView.builder(
-                  itemCount: wordProvider.words.length,
+                  itemCount: wordProvider.words.length + 1,
                   itemBuilder: (context, index) {
-                    final word = wordProvider.words[index];
+                    if (index == 0){
+                      return CenteredMaxWidth(
+                        maxWidth: 400,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 30),
+                              child: SizedBox(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(leftKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 70),  // IconButton40 + 30
+                                      child:Text(rightKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Divider(
+                                height: 20,
+                                thickness: 0.5,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    final word = wordProvider.words[index - 1];
                     return WordTile(
                       word: word,
-                      onDelete: () => _confirmAndDelete(context, index, word),
+                      onDelete: () => _confirmAndDelete(context, index - 1, word),
                     );
                   },
                 ),
