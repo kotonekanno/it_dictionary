@@ -41,16 +41,8 @@ class HomeScreenState extends State<HomeScreen>{
         builder: (context) => CustomDialog(
           title: 'Delete Word?',
           content: 'Are you sure to delete "${word.leftKey}"?',
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text('Cancel',style: TextStyle(color: Colors.indigo)),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text('Delete',style: TextStyle(color: Colors.indigo)),
-            ),
-          ],
+          doText: 'Delete',
+          doFunction: () {Navigator.pop(context, true);},
         )
       );
 
@@ -76,68 +68,141 @@ class HomeScreenState extends State<HomeScreen>{
       ),
       body: CenteredMaxWidth(
         maxWidth: 600,
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Search',
+                      border: OutlineInputBorder(),
+                    ),
+                    onChanged: (value) => _onSearchChanged(value, wordProvider),
+                  ),
                 ),
-                onChanged: (value) => _onSearchChanged(value, wordProvider),
+                Divider(height: 30, indent: 50, endIndent: 50),
+
+                // 👇 ここだけスクロール可能にする
+                Expanded(
+                  child: Consumer<WordProvider>(
+                    builder: (context, wordProvider, _) => ListView.builder(
+                      itemCount: wordProvider.words.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index == 0) {
+                          return CenteredMaxWidth(
+                            maxWidth: 400,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 30),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(leftKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 70),
+                                        child: Text(rightKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Divider(
+                                    height: 20,
+                                    thickness: 0.5,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+
+                        final word = wordProvider.words[index - 1];
+                        return WordTile(
+                          word: word,
+                          onDelete: () => _confirmAndDelete(context, index - 1, word),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+
+      /*
+      body: CenteredMaxWidth(
+        maxWidth: 600,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Search',
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (value) => _onSearchChanged(value, wordProvider),
+                ),
               ),
-            ),
-            Divider(height: 30, indent: 50, endIndent: 50,),
-            Expanded(
-              child: Consumer<WordProvider>(
-                builder: (context, wordProvider, _) => ListView.builder(
-                  itemCount: wordProvider.words.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == 0){
-                      return CenteredMaxWidth(
-                        maxWidth: 400,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 30),
-                              child: SizedBox(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(leftKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 70),  // IconButton40 + 30
-                                      child:Text(rightKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-                                    )
-                                  ],
+              Divider(height: 30, indent: 50, endIndent: 50,),
+              Expanded(
+                child: Consumer<WordProvider>(
+                  builder: (context, wordProvider, _) => ListView.builder(
+                    itemCount: wordProvider.words.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == 0){
+                        return CenteredMaxWidth(
+                          maxWidth: 400,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                child: SizedBox(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(leftKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 70),  // IconButton40 + 30
+                                        child:Text(rightKey, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Divider(
-                                height: 20,
-                                thickness: 0.5,
-                                color: Colors.black,
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Divider(
+                                  height: 20,
+                                  thickness: 0.5,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        );
+                      }
+                      final word = wordProvider.words[index - 1];
+                      return WordTile(
+                        word: word,
+                        onDelete: () => _confirmAndDelete(context, index - 1, word),
                       );
-                    }
-                    final word = wordProvider.words[index - 1];
-                    return WordTile(
-                      word: word,
-                      onDelete: () => _confirmAndDelete(context, index - 1, word),
-                    );
-                  },
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],      
+            ],      
+          ),
         ),
-      )
+      ),*/
     );
   }
 }
