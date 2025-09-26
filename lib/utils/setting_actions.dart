@@ -32,7 +32,7 @@ class DeleteAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingItem(
-      label: 'Delete all the words',
+      label: 'Delete all words',
       inputWidget: IconButton(
         icon: Icon(Icons.delete_forever, size:45),
         padding: EdgeInsets.zero,
@@ -42,7 +42,7 @@ class DeleteAll extends StatelessWidget {
             context: context,
             builder: (context) => CustomDialog(
               title: 'Delete all words?',
-              content: 'Are you sure to delete all the words?',
+              content: 'Are you sure to delete all words?',
               doText: 'Delete',
               doFunction: () {Navigator.pop(context, true);},
             ),

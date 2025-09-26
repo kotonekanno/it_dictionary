@@ -38,16 +38,16 @@ class HiveService {
     final box = getBox();
     final lowerQuery = query.toLowerCase();
     return box.values.where((word) =>
-      word.leftKey.toLowerCase().contains(lowerQuery) ||
-      word.rightKey.contains(lowerQuery)
+      word.mainKey.toLowerCase().contains(lowerQuery) ||
+      word.subKey.contains(lowerQuery)
     ).toList();
   }
 
   // Export to CSV
   Future<void> exportToCSV(List<Word> words) async {
     List<List<String>> rows = [
-      ["leftKey", "rightKey"],
-      ...words.map((w) => [w.leftKey, w.rightKey]),
+      ["mainKey", "subKey"],
+      ...words.map((w) => [w.mainKey, w.subKey]),
     ];
 
     String csvData = const ListToCsvConverter().convert(rows);
@@ -82,8 +82,8 @@ class HiveService {
         final row = rows[i];
         if (row.length >= 2) {
           final word = Word(
-            leftKey: row[0].toString(),
-            rightKey: row[1].toString(),
+            mainKey: row[0].toString(),
+            subKey: row[1].toString(),
           );
           await addWord(word);
         }

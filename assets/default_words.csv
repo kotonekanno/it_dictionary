@@ -1,3 +1,144 @@
-leftKey,rightKey
-carrot,人参
-eggplant,ナス
+mainKey,subKey
+array,配列
+dictionary / map,辞書
+tuple,タプル
+function / method,関数
+argument / parameter,引数
+return value,戻り値
+variable scope,変数スコープ
+closure,クロージャ
+lambda expression,ラムダ式
+conditional statement / if statement,条件分岐
+loop / iteration,繰り返し
+exception,例外
+query,クエリ
+connection,接続
+interpreter,インタプリタ
+version control,バージョン管理
+repository,リポジトリ
+merge,マージ
+library,ライブラリ
+deploy,デプロイ
+queue,キュー
+binary search tree,二分探索木
+depth-first search (DFS),深さ優先探索
+breadth-first search (BFS),幅優先探索
+recuision,再帰
+inheritance,継承
+polymorphism,ポリモーフィズム
+encapsulation,カプセル化
+abstraction,抽象化
+abstract class,抽象クラス
+singleton,シングルトン
+token authentication,トークン認証
+protocol,プロトコル
+load balancer,ロードバランサ―
+virtual machine (VM),仮想マシン
+authentication,認証
+authorization,認可
+encryption,暗号化
+cache,キャッシュ
+migration,マイグレーション
+schema,スキーマ
+foreign key,外部キー
+normalization,正規化
+pagination,ページネーション
+daemon,デーモン
+value,値
+string,文字列
+boolean,真偽値
+dictionary,連想配列
+set,集合
+data structure,データ構造
+process,処理
+procedure,手続き
+scope,範囲
+anonymous function,無名関数
+recursion,再帰呼び出し
+condition,条件
+branch,分岐
+table,表
+row,行
+column,列
+primary key,主キー
+relation,関連
+update,更新
+delete,削除
+insert,追加
+query,検索
+transaction,取引
+communication,通信
+request,要求
+response,応答
+route,経路
+certificate,証明書
+port,ポート番号
+monitoring,監視
+log,記録
+alert,警告
+execution,実行
+overload,過負荷
+restart,再起動
+deployment,配備
+unit test,単体試験
+performance test,性能試験
+integration test,結合試験
+continuous integration,継続的統合
+continuous delivery,継続的配信
+filter,検索条件
+aggregate,集計
+sort,並べ替え
+constraint,制約
+reference,参照
+association,関連付け
+join,結合
+result,結果
+update operation,更新操作
+insert operation,挿入操作
+delete operation,削除操作
+routing,経路設定
+receive,受信
+send,送信
+handler,処理単位
+middleware,中間処理
+credentials,認証情報
+expiration,有効期限
+retry,再試行
+latency,遅延
+synchronous,同期
+asynchronous,非同期
+call,呼び出し
+response value,返却値
+exception thrown,例外発生
+limit,制限
+pagination,ページ分割
+redirect,遷移
+permission,許可
+denial,拒否
+signature,署名
+concurrency,同時実行
+wait,待機
+worker,作業者
+persistence,永続化
+storage,記憶域
+recovery,復旧
+scaling,拡張
+log entry,記録内容
+severity,重大度
+timestamp,発生時刻
+status,状態
+notification,通知
+metric,指標
+monitored target,監視対象
+analysis,解析
+identity verification,身元確認
+enctryption key,暗号化鍵
+decryption,解読・復号
+security,安全性
+protection,攻撃防御
+intrusion detection,攻撃検知
+progress,進行状況
+coordination,調整
+documentation,記録保持
+iteration,反復
+improvement,改善

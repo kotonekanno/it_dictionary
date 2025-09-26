@@ -12,15 +12,15 @@ class AddWordScreen extends StatefulWidget {
 }
 
 class AddWordScreenState extends State<AddWordScreen> {
-  final _englishController = TextEditingController();
-  final _japaneseController = TextEditingController();
+  final _mainController = TextEditingController();
+  final _subController = TextEditingController();
 
   final _englishFocus = FocusNode();
 
   @override
   void dispose() {
-    _englishController.dispose();
-    _japaneseController.dispose();
+    _mainController.dispose();
+    _subController.dispose();
     super.dispose();
   }
 
@@ -43,10 +43,10 @@ class AddWordScreenState extends State<AddWordScreen> {
                 onInvoke: (intent) {
                   onAddPressed(
                     context,
-                    _englishController.text.trim(),
-                    _japaneseController.text.trim(),
-                    _englishController,
-                    _japaneseController,
+                    _mainController.text.trim(),
+                    _subController.text.trim(),
+                    _mainController,
+                    _subController,
                     _englishFocus,
                   );
                   return null;
@@ -54,10 +54,17 @@ class AddWordScreenState extends State<AddWordScreen> {
               ),
             },
             child: WordInputForm(
-              englishController: _englishController,
-              japaneseController: _japaneseController,
-              englishFocus: _englishFocus,
-              onAddPressed: () => onAddPressed,
+              mainController: _mainController,
+              subController: _subController,
+              mainFocus: _englishFocus,
+              onPressed: () {onAddPressed(
+                context,
+                _mainController.text.trim(),
+                _subController.text.trim(),
+                _mainController,
+                _subController,
+                _englishFocus,
+              );},
             )
           ),
         ),

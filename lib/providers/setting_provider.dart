@@ -9,18 +9,18 @@ class SettingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Change the keys
-  String _leftKey = 'English';
-  String get leftKey => _leftKey;
-  void setLeftKey(String newKey) {
-    _leftKey = newKey;
+  // Change keys
+  String _mainKey = 'English';
+  String get mainKey => _mainKey;
+  void setMainKey(String newKey) {
+    _mainKey = newKey;
     notifyListeners();
   }
 
-  String _rightKey = 'Japanese';
-  String get rightKey => _rightKey;
-  void setRightKey(String newKey) {
-    _rightKey = newKey;
+  String _subKey = 'Japanese';
+  String get subKey => _subKey;
+  void setSubKey(String newKey) {
+    _subKey = newKey;
   }
 
   // Confirm before delete

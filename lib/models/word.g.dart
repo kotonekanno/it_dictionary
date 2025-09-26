@@ -17,8 +17,8 @@ class WordAdapter extends TypeAdapter<Word> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Word(
-      leftKey: fields[0] as String,
-      rightKey: fields[1] as String,
+      mainKey: fields[0] as String,
+      subKey: fields[1] as String,
     );
   }
 
@@ -27,9 +27,9 @@ class WordAdapter extends TypeAdapter<Word> {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.leftKey)
+      ..write(obj.mainKey)
       ..writeByte(1)
-      ..write(obj.rightKey);
+      ..write(obj.subKey);
   }
 
   @override

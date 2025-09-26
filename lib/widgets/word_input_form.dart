@@ -4,24 +4,24 @@ import '../providers/setting_provider.dart';
 import '../utils/csv_actions.dart';
 
 class WordInputForm extends StatelessWidget {
-  final TextEditingController englishController;
-  final TextEditingController japaneseController;
-  final FocusNode englishFocus;
+  final TextEditingController mainController;
+  final TextEditingController subController;
+  final FocusNode mainFocus;
 
-  final VoidCallback onAddPressed;
+  final VoidCallback onPressed;
 
   const WordInputForm({
-    required this.englishController,
-    required this.japaneseController,
-    required this.englishFocus,
-    required this.onAddPressed,
+    required this.mainController,
+    required this.subController,
+    required this.mainFocus,
+    required this.onPressed,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final leftKey = context.watch<SettingProvider>().leftKey;
-    final rightKey = context.watch<SettingProvider>().rightKey;
+    final mainKey = context.watch<SettingProvider>().mainKey;
+    final subKey = context.watch<SettingProvider>().subKey;
 
     return Column(
       children: [
@@ -30,10 +30,10 @@ class WordInputForm extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(top: 10),
             child: TextField(
-              controller: englishController,
-              focusNode: englishFocus,
+              controller: mainController,
+              focusNode: mainFocus,
               decoration: InputDecoration(
-                labelText: leftKey,
+                labelText: mainKey,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -43,16 +43,16 @@ class WordInputForm extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
           child: TextField(
-            controller: japaneseController,
+            controller: subController,
             decoration: InputDecoration(
-              labelText: rightKey,
+              labelText: subKey,
               border: OutlineInputBorder(),
             ),
           ),
         ),
         SizedBox(height: 24),
         ElevatedButton(
-          onPressed: onAddPressed,
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(100, 50),
             backgroundColor: const Color.fromARGB(255, 203, 211, 255),

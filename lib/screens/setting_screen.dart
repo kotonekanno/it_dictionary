@@ -17,8 +17,8 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final wordProvider = context.watch<SettingProvider>();
     final appTitleController = TextEditingController(text: wordProvider.appTitle);
-    final leftKeyController = TextEditingController(text: wordProvider.leftKey);
-    final rightKeyController = TextEditingController(text: wordProvider.rightKey);
+    final mainKeyController = TextEditingController(text: wordProvider.mainKey);
+    final subKeyController = TextEditingController(text: wordProvider.subKey);
 
     return Scaffold(
       appBar: AppBar(
@@ -43,18 +43,18 @@ class SettingScreen extends StatelessWidget {
               TextSettingItem(
                 label: 'Change the left key',
                 snackBarMessage: 'Left key updated',
-                controller: leftKeyController,
+                controller: mainKeyController,
                 onSave: (value) {
-                  context.read<SettingProvider>().setLeftKey(value);
+                  context.read<SettingProvider>().setMainKey(value);
                 },
               ),
               dividerWithPadding,
               TextSettingItem(
                 label: 'Change the right key',
                 snackBarMessage: 'Right key updated',
-                controller: rightKeyController,
+                controller: subKeyController,
                 onSave: (value) {
-                  context.read<SettingProvider>().setRightKey(value);
+                  context.read<SettingProvider>().setSubKey(value);
                 },
               ),
               dividerWithPadding,

@@ -31,7 +31,7 @@ class WordProvider extends ChangeNotifier {
       for (var row in rows.sublist(1)) {
         final parts = row.split(',');
         if (parts.length >= 2) {
-          await box.add(Word(leftKey: parts[0], rightKey: parts[1]));
+          await box.add(Word(mainKey: parts[0], subKey: parts[1]));
         }
       }
       await loadAllWords();
@@ -39,8 +39,8 @@ class WordProvider extends ChangeNotifier {
   }
 
   // Add word
-  Future<void> addWord(String leftKey, String rightKey) async {
-    final word = Word(leftKey: leftKey, rightKey: rightKey);
+  Future<void> addWord(String mainKey, String subKey) async {
+    final word = Word(mainKey: mainKey, subKey: subKey);
     await _hiveService.addWord(word);
     await loadAllWords();
   }
