@@ -23,7 +23,7 @@ It is designed to quickly connect short words in a one-to-one manner, making it 
 - Create and manage your own dictionary
 - Rename the dictionary and register entries manually
 - Import and export entries as **CSV files**
-- Optimized for mapping short words to shoer words
+- Optimized for mapping short words to short words
 - Quickly find linked words with a simple search
 - Default dictionary works as an English-Japanese / Japanese-English IT glossary
 
