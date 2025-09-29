@@ -43,8 +43,10 @@ class DeleteAll extends StatelessWidget {
             builder: (context) => CustomDialog(
               title: 'Delete all words?',
               content: 'Are you sure to delete all words?',
-              doText: 'Delete',
-              doFunction: () {Navigator.pop(context, true);},
+              rightText: 'Delete',
+              leftText: 'Cancel',
+              rightFunction: () => Navigator.pop(context, true),
+              leftFunction: () => Navigator.pop(context, false),
             ),
           );
           if (confirm == true) {

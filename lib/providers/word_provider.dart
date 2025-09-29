@@ -39,8 +39,8 @@ class WordProvider extends ChangeNotifier {
   }
 
   // Add word
-  Future<void> addWord(String mainKey, String subKey) async {
-    final word = Word(mainKey: mainKey, subKey: subKey);
+  Future<void> addWord(String mainValue, String subValue) async {
+    final word = Word(mainKey: mainValue, subKey: subValue);
     await _hiveService.addWord(word);
     await loadAllWords();
   }
@@ -73,11 +73,12 @@ class WordProvider extends ChangeNotifier {
     notifyListeners();
   }
   
-  // Import / Export
+  // Export
   Future<void> exportWords() async {
     await _hiveService.exportToCSV(_words);
   }
 
+  // Import
   Future<void> importWords() async {
     await _hiveService.importFromCSV();
     loadAllWords();

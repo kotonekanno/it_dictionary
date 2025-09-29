@@ -34,6 +34,8 @@ Read this in English: [README.md](README.md)
 1. リポジトリをクローン
   ```bash
   git clone https://github.com/kotonekanno/it_dictionary
+  ```
+  ```bash
   cd <path/to/the/directory>
   ```
 2. Flutterをインストール：[Flutter公式](https://docs.flutter.dev/get-started)
@@ -51,9 +53,11 @@ Read this in English: [README.md](README.md)
 1. リポジトリをクローン
   ```bash
   git clone https://github.com/kotonekanno/it_dictionary
+  ```
+  ```bash
   cd <path/to/the/directory>
   ```
-2. Flutterをインストール[Flutter公式](https://docs.flutter.dev/get-started)
+2. Flutterをインストール：[Flutter公式](https://docs.flutter.dev/get-started)
 3. 依存関係を取得
   ```bash
   flutter pub get

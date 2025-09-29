@@ -34,6 +34,8 @@ It is designed to quickly connect short words in a one-to-one manner, making it 
 1. Clone this repository
   ```bash
   git clone https://github.com/kotonekanno/it_dictionary
+  ```
+  ```bash
   cd <path/to/the/directory>
   ```
 2. Install Flutter: [Flutter Official](https://docs.flutter.dev/get-started)
@@ -51,6 +53,8 @@ It is designed to quickly connect short words in a one-to-one manner, making it 
 1. Clone this repository
   ```bash
   git clone https://github.com/kotonekanno/it_dictionary
+  ```
+  ```bash
   cd <path/to/the/directory>
   ```
 2. Install Flutter: [Flutter Official](https://docs.flutter.dev/get-started)

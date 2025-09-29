@@ -74,8 +74,10 @@ class WordListWidget extends StatelessWidget {
         builder: (context) => CustomDialog(
           title: 'Delete Word?',
           content: 'Are you sure to delete "${word.mainKey}"?',
-          doText: 'Delete',
-          doFunction: () => Navigator.pop(context, true),
+          rightText: 'Delete',
+          leftText: 'Cancel',
+          rightFunction: () => Navigator.pop(context, true),
+          leftFunction: () => Navigator.pop(context, false),
         ),
       );
       shouldDelete = confirm == true;
