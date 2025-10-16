@@ -28,7 +28,7 @@ class AddWordScreenState extends State<AddWordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add New Word'),
+        title: Text('Add Word'),
         centerTitle: true,
       ),
       body: CenteredMaxWidth(

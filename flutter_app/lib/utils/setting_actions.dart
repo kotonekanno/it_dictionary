@@ -4,16 +4,15 @@ import '../providers/setting_provider.dart';
 import '../providers/word_provider.dart';
 import '../widgets/setting_item.dart';
 import '../widgets/custom_dialog.dart';
-import '../screens/login_screen.dart';
 
-class DeleteSetting extends StatelessWidget {
-  const DeleteSetting({super.key});
+class DeleteConfirmationSetting extends StatelessWidget {
+  const DeleteConfirmationSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SettingItem(
+    return ButtonSettingItem(
       label: 'Confirm before delete',
-      inputWidget: Switch(
+      button: Switch(
         activeTrackColor: Colors.indigo,
         value: context.watch<SettingProvider>().confirmBeforeDelete,
         onChanged: (val) {
@@ -27,14 +26,14 @@ class DeleteSetting extends StatelessWidget {
   }
 }
 
-class DeleteAll extends StatelessWidget {
-  const DeleteAll({super.key});
+class DeleteAllWords extends StatelessWidget {
+  const DeleteAllWords({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SettingItem(
+    return ButtonSettingItem(
       label: 'Delete all words',
-      inputWidget: IconButton(
+      button: IconButton(
         icon: Icon(Icons.delete_forever, size:45),
         padding: EdgeInsets.zero,
         color: Colors.red,
@@ -56,25 +55,6 @@ class DeleteAll extends StatelessWidget {
               const SnackBar(content: Text('Deleted all words')),
             );
           }
-        },
-      ),
-    );
-  }
-}
-class LoginRegister extends StatelessWidget {
-  const LoginRegister({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SettingItem(
-      label: 'Login / Register',
-      inputWidget: IconButton(
-        icon: Icon(Icons.arrow_forward),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
-          );
         },
       ),
     );

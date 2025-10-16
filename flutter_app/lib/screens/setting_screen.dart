@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:it_dictionary/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/setting_provider.dart';
 import '../widgets/centered_max_width.dart';
@@ -62,11 +63,15 @@ class SettingScreen extends StatelessWidget {
                   },
                 ),
                 dividerWithPadding,
-                DeleteSetting(),
+                DeleteConfirmationSetting(),
                 dividerWithPadding,
-                DeleteAll(),
+                DeleteAllWords(),
                 dividerWithPadding,
-                LoginRegister(),
+                PageSettingItem(
+                  label: 'Login / Register',
+                  page: LoginScreen(),
+                  status: "Login"
+                ),
                 dividerWithPadding,
               ],
             ),

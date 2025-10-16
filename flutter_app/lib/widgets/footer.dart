@@ -15,7 +15,7 @@ class Footer extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search Word'),
-        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add New Word'),
+        BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Word'),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Setting'),
       ],
       type: BottomNavigationBarType.fixed,
