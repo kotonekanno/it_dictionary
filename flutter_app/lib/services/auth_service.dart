@@ -4,13 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
   final Dio _dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000'));
 
-  Future<bool> register(String id, String password) async {
-    final response = await _dio.post('/register', data: {'id': id, 'password': password});
+  Future<bool> register(String name, String password) async {
+    final response = await _dio.post('/register', data: {'name': name, 'password': password});
     return response.data['success'] == true;
   }
 
-  Future<bool> login(String id, String password) async {
-    final response = await _dio.post('/login', data: {'id': id, 'password': password});
+  Future<bool> login(String name, String password) async {
+    final response = await _dio.post('/login', data: {'name': name, 'password': password});
     if (response.data['success'] == true) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('jwt', response.data['token']);

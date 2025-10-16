@@ -16,17 +16,24 @@ const PORT = 3000;
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: 'password',
-  database: 'flutter_auth'
+  password: 'MyPass123!',
+  database: 'dictionary_auth',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 };
+
+app.get('/', (req, res) => {
+  res.send('Hello World! Node.js + MySQL server is running.');
+});
 
 // ユーザー登録
 app.post('/register', async (req, res) => {
-  const { id, password } = req.body;
+  const { name, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const connection = await mysql.createConnection(dbConfig);
-    await connection.execute('INSERT INTO users (id, password) VALUES (?, ?)', [id, hashedPassword]);
+    await connection.execute('INSERT INTO users (name, password) VALUES (?, ?)', [name, hashedPassword]);
     await connection.end();
     res.json({ success: true, message: 'User registered' });
   } catch (err) {
@@ -37,10 +44,10 @@ app.post('/register', async (req, res) => {
 
 // ログイン
 app.post('/login', async (req, res) => {
-  const { id, password } = req.body;
+  const { name, password } = req.body;
   try {
     const connection = await mysql.createConnection(dbConfig);
-    const [rows] = await connection.execute('SELECT * FROM users WHERE id = ?', [id]);
+    const [rows] = await connection.execute('SELECT * FROM users WHERE name = ?', [name]);
     await connection.end();
 
     if (rows.length === 0) return res.status(400).json({ success: false, message: 'User not found' });
@@ -49,7 +56,7 @@ app.post('/login', async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(401).json({ success: false, message: 'Invalid password' });
 
-    const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1d' }); // トークン1日有効
+    const token = jwt.sign({ name: user.name }, SECRET_KEY, { expiresIn: '1d' }); // トークン1日有効
     res.json({ success: true, token });
   } catch (err) {
     console.error(err);

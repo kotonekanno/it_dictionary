@@ -11,6 +11,7 @@
 - [Usage](#usage)
   - [Windows (Desktop)](#windows-desktop)
   - [Web browser](#web-browser)
+  - [Node.js server](#nodejs-server)
 - [Directory Structure](#directory-structure)
 
 ## Overview
@@ -32,45 +33,75 @@ It is designed to quickly connect short words in a one-to-one manner, making it 
 ### Windows (Desktop)
 
 1. Clone this repository
-  ```bash
-  git clone https://github.com/kotonekanno/it_dictionary
-  ```
-  ```bash
-  cd <path/to/the/directory>
-  ```
+```bash
+git clone https://github.com/kotonekanno/it_dictionary
+```
+
 2. Install Flutter: [Flutter Official](https://docs.flutter.dev/get-started)
-3. Get dependencies
-  ```bash
-  flutter pub get
-  ```
-4. Run the app
-  ```bash
-  flutter run -d windows
-  ```
+
+3. Move to `it_dictionary/flutter_app`
+```bash
+cd path/to/it_dictionary/flutter_app/
+```
+
+4. Get dependencies
+```bash
+flutter pub get
+```
+
+5. Run Flutter app
+```bash
+flutter run -d windows
+```
 
 ### Web browser
 
 1. Clone this repository
-  ```bash
-  git clone https://github.com/kotonekanno/it_dictionary
-  ```
-  ```bash
-  cd <path/to/the/directory>
-  ```
+```bash
+git clone https://github.com/kotonekanno/it_dictionary
+```
+
 2. Install Flutter: [Flutter Official](https://docs.flutter.dev/get-started)
-3. Get dependencies
-  ```bash
-  flutter pub get
-  ```
-4. Run the app
-  ```bash
-  flutter run -d chrome
-  ```
+
+3. Move to `it_dictionary/flutter_app`
+```bash
+cd path/to/it_dictionary/flutter_app/
+```
+
+4. Get dependencies
+```bash
+flutter pub get
+```
+
+5. Run flutter app
+```bash
+flutter run -d chrome
+```
+
+### Node.js server
+
+To use online features, you also need to run the Node.js server.
+
+1. Move to `it_dictionary/js_server`
+```bash
+cd path/to/it_dictionary/js_server
+```
+
+2. Install dependencies
+
+```bash
+npm install bcrypt body-parser cors express jsonwebtoken mysql2
+```
+
+3. Run `server.js`
+``` bash
+node server.js
+```
 
 ## Directory Structure
 
 ```
-it_dictionary/
+flutter_app/
 ├── android/                        # Android platform-specific files
 ├── ios/                            # iOS platform-specific files
 ├── linux/                          # Linux platform-specific files
@@ -78,17 +109,17 @@ it_dictionary/
 ├── windows/                        # Windows platform-specific files
 ├── web/                            # Web platform-specific files
 ├── assets/                         # Static assets
-│   ├── fonts/                     # Custom fonts
-│   └── default_words.csv          # Default CSV data
+│   ├── fonts/                      # Custom fonts
+│   └── default_words.csv           # Default CSV data
 ├── lib/                            # Mainsource code
-│   ├── models/                    # CSV related models
-│   ├── providers/                 # State management with Provider
-│   ├── screens/                   # Pages/Screens
-│   ├── services/                  # Services/business logic
-│   ├── utils/                     # Utility functions
-│   ├── widgets/                   # Reusable UI components
-│   ├── app.dart                   # App root widget
-│   └── main.dart                  # Entry point
+│   ├── models/                     # CSV related models
+│   ├── providers/                  # State management with Provider
+│   ├── screens/                    # Pages/Screens
+│   ├── services/                   # Services/business logic
+│   ├── utils/                      # Utility functions
+│   ├── widgets/                    # Reusable UI components
+│   ├── app.dart                    # App root widget
+│   └── main.dart                   # Entry point
 ├── test/                           # Widget tests
 ├── .dart_tool/                     # Flutter & Dart tool files (auto-generated)
 ├── .idea/                          # IDE project settings
@@ -99,5 +130,10 @@ it_dictionary/
 ├── it_dictionary.iml
 ├── pubspec.yaml                    # Dependencies and project settings
 ├── pubspec.lock
-└── README.md                       # This file
+
+js_server/
+├── node_modules/                   # Installed Node.js modules
+├── package-lock.json
+├── package.json                    # Project metadata & scripts
+└── server.js                       # Express server
 ```
