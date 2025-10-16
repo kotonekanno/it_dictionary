@@ -4,6 +4,7 @@ import '../providers/setting_provider.dart';
 import '../providers/word_provider.dart';
 import '../widgets/setting_item.dart';
 import '../widgets/custom_dialog.dart';
+import '../screens/login_screen.dart';
 
 class DeleteSetting extends StatelessWidget {
   const DeleteSetting({super.key});
@@ -55,6 +56,25 @@ class DeleteAll extends StatelessWidget {
               const SnackBar(content: Text('Deleted all words')),
             );
           }
+        },
+      ),
+    );
+  }
+}
+class LoginRegister extends StatelessWidget {
+  const LoginRegister({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingItem(
+      label: 'Login / Register',
+      inputWidget: IconButton(
+        icon: Icon(Icons.arrow_forward),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
         },
       ),
     );

@@ -4,7 +4,6 @@ import '../providers/setting_provider.dart';
 import '../widgets/centered_max_width.dart';
 import '../widgets/setting_item.dart';
 import '../utils/setting_actions.dart';
-import '../screens/login_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -67,16 +66,7 @@ class SettingScreen extends StatelessWidget {
                 dividerWithPadding,
                 DeleteAll(),
                 dividerWithPadding,
-                SettingItem(
-                  label: 'Login / Register',
-                  inputWidget: Icon(Icons.arrow_forward),
-                  onSave: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
-                    );
-                  }
-                ),
+                LoginRegister(),
                 dividerWithPadding,
               ],
             ),
