@@ -4,6 +4,7 @@ import '../providers/setting_provider.dart';
 import '../widgets/centered_max_width.dart';
 import '../widgets/setting_item.dart';
 import '../utils/setting_actions.dart';
+import '../screens/login_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -28,41 +29,57 @@ class SettingScreen extends StatelessWidget {
       body: CenteredMaxWidth(
         maxWidth: 800,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              dividerWithPadding,
-              TextSettingItem(
-                label: 'Change the prefix of app title',
-                snackBarMessage: 'Title updated',
-                controller: appTitleController,
-                onSave: (value) {
-                  context.read<SettingProvider>().setAppTitle(value);
-                },
-              ),
-              dividerWithPadding,
-              TextSettingItem(
-                label: 'Change the left key',
-                snackBarMessage: 'Left key updated',
-                controller: mainKeyController,
-                onSave: (value) {
-                  context.read<SettingProvider>().setMainKey(value);
-                },
-              ),
-              dividerWithPadding,
-              TextSettingItem(
-                label: 'Change the right key',
-                snackBarMessage: 'Right key updated',
-                controller: subKeyController,
-                onSave: (value) {
-                  context.read<SettingProvider>().setSubKey(value);
-                },
-              ),
-              dividerWithPadding,
-              DeleteSetting(),
-              dividerWithPadding,
-              DeleteAll(),
-              dividerWithPadding,
-            ],
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: Column(
+              children: [
+                dividerWithPadding,
+                TextSettingItem(
+                  label: 'Change the prefix of app title',
+                  snackBarMessage: 'Title updated',
+                  controller: appTitleController,
+                  onSave: (value) {
+                    context.read<SettingProvider>().setAppTitle(value);
+                  },
+                ),
+                dividerWithPadding,
+                TextSettingItem(
+                  label: 'Change the left key',
+                  snackBarMessage: 'Left key updated',
+                  controller: mainKeyController,
+                  onSave: (value) {
+                    context.read<SettingProvider>().setMainKey(value);
+                  },
+                ),
+                dividerWithPadding,
+                TextSettingItem(
+                  label: 'Change the right key',
+                  snackBarMessage: 'Right key updated',
+                  controller: subKeyController,
+                  onSave: (value) {
+                    context.read<SettingProvider>().setSubKey(value);
+                  },
+                ),
+                dividerWithPadding,
+                DeleteSetting(),
+                dividerWithPadding,
+                DeleteAll(),
+                dividerWithPadding,
+                SettingItem(
+                  label: 'Login / Register',
+                  inputWidget: Icon(Icons.arrow_forward),
+                  onSave: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    );
+                  }
+                ),
+                dividerWithPadding,
+              ],
+            ),
           ),
         ),
       ),

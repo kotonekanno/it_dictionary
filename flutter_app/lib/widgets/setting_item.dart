@@ -52,8 +52,8 @@ class SettingItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                  label,
-                  style: const TextStyle(fontSize: 18),
+                label,
+                style: const TextStyle(fontSize: 18),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
