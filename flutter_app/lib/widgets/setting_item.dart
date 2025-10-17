@@ -184,14 +184,24 @@ class PageSettingItem extends StatelessWidget {
         const SizedBox(width: 16),
       ],
       columnChildren: [
-        Text(label, style: const TextStyle(fontSize: 18)),
-          Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text(status, style: TextStyle(fontSize: 14)),
-        ),
-        IconButton(
-          icon: Icon(Icons.arrow_forward_ios),
-          onPressed: onPressed,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(width: 40),
+            Column(
+              children: [
+                Text(label, style: const TextStyle(fontSize: 18)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Text(status, style: TextStyle(fontSize: 14)),
+                ),
+              ],
+            ),
+            IconButton(
+              icon: Icon(Icons.arrow_forward_ios),
+              onPressed: onPressed,
+            ),
+          ],
         ),
       ],
     );

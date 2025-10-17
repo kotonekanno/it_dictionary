@@ -36,6 +36,12 @@ class SettingScreen extends StatelessWidget {
             child: Column(
               children: [
                 dividerWithPadding,
+                PageSettingItem(
+                  label: 'Login',
+                  page: LoginScreen(),
+                  status: 'Logged in / Logged out',
+                ),
+                dividerWithPadding,
                 TextSettingItem(
                   label: 'Change the prefix of app title',
                   snackBarMessage: 'Title updated',
@@ -66,12 +72,6 @@ class SettingScreen extends StatelessWidget {
                 DeleteConfirmationSetting(),
                 dividerWithPadding,
                 DeleteAllWords(),
-                dividerWithPadding,
-                PageSettingItem(
-                  label: 'Login / Register',
-                  page: LoginScreen(),
-                  status: "Login"
-                ),
                 dividerWithPadding,
               ],
             ),
