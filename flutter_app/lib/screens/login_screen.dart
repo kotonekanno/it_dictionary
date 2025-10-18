@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/input_field.dart';
+import '../widgets/centered_max_width.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -27,65 +30,62 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(
+        title: const Text('Login'),
+        centerTitle: true,
+      ),
+      body: CenteredMaxWidth(
+        maxWidth: 600,
         child: Column(
           children: [
-            TextField(controller: _idController, decoration: const InputDecoration(labelText: 'ID')),
-            TextField(controller: _pwController, decoration: const InputDecoration(labelText: 'Password'), obscureText: true),
+            InputField(
+              controller: _idController,
+              labelText: 'ID',
+              obscureText: false,
+            ),
+            InputField(
+              controller: _pwController,
+              labelText: 'Password',
+              obscureText: true,
+            ),
             const SizedBox(height: 20),
             _loading ? const CircularProgressIndicator() : Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
+                    MainButton(
                       onPressed: _login,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        foregroundColor: Colors.white,
-                        fixedSize: const Size(125, 50),
-                        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      child: const Text('Login')
+                      text: 'Login',
                     ),
-                    ElevatedButton(
+                    SizedBox(width: 50),
+                    MainButton(
                       onPressed: () {print('Logout pressed');},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        foregroundColor: Colors.white,
-                        fixedSize: const Size(125, 50),
-                        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      child: const Text('Logout')
+                      text: 'Logout',
                     ),
                   ],
                 ),
                 Divider(height: 60),
-                ElevatedButton(
+                CustomButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RegisterScreen()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    fixedSize: const Size(150, 40),
-                    backgroundColor: const Color.fromARGB(255, 203, 211, 255),
-                    textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  text: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Register'),
+                      Icon(Icons.arrow_outward),
+                    ],
                   ),
-                  child: const Text('Register'),
+                  backgroundColor: const Color.fromARGB(255, 203, 211, 255),
+                  textColor: Colors.indigo,
+                  size: const Size(150, 40),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                /*ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen()),
-                    );
-                  },
-                  child: const Text('Reset Password'),
-                ),*/
               ],
             ),
           ],

@@ -57,14 +57,16 @@ class AddWordScreenState extends State<AddWordScreen> {
               mainController: _mainController,
               subController: _subController,
               mainFocus: _englishFocus,
-              onPressed: () {onAddPressed(
-                context,
-                _mainController.text.trim(),
-                _subController.text.trim(),
-                _mainController,
-                _subController,
-                _englishFocus,
-              );},
+              onPressed: () {
+                onAddPressed(
+                  context,
+                  _mainController.text.trim(),
+                  _subController.text.trim(),
+                  _mainController,
+                  _subController,
+                  _englishFocus,
+                );
+              },
             )
           ),
         ),

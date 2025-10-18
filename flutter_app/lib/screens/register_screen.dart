@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/input_field.dart';
+import '../widgets/centered_max_width.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -25,24 +28,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(
+        title: const Text('Register'),
+        centerTitle: true,
+      ),
+      body: CenteredMaxWidth(
+        maxWidth: 600,
         child: Column(children: [
-          TextField(controller: _idController, decoration: const InputDecoration(labelText: 'ID')),
-          TextField(controller: _pwController, decoration: const InputDecoration(labelText: 'Password'), obscureText: true),
+          InputField(
+            controller: _idController,
+            labelText: 'ID',
+            obscureText: false,
+          ),
+          InputField(
+            controller: _pwController,
+            labelText: 'Password',
+            obscureText: true,
+          ),
           const SizedBox(height: 20),
           _loading ? const CircularProgressIndicator() : Column(
             children: [
-              ElevatedButton(
+              MainButton(
                 onPressed: _register,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
-                    foregroundColor: Colors.white,
-                    fixedSize: const Size(125, 50),
-                    textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                child: const Text('Register'),
+                text: 'Register',
               ),
             ],
           ),
