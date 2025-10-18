@@ -45,7 +45,7 @@ class ButtonSettingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SettingItem(
       rowChildren: [
-        const SizedBox(width: 16),
+        const SizedBox(width: 24),
         Flexible(
           fit: FlexFit.tight,
           flex: 1,
@@ -118,8 +118,13 @@ class TextSettingItem extends StatelessWidget {
           
     return SettingItem(
       rowChildren: [
-        const SizedBox(width: 16),
-        Expanded(child: Text(label, style: const TextStyle(fontSize: 18))),
+        const SizedBox(width: 24),
+        Expanded(
+          child: Text(
+            label,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
         const SizedBox(width: 16),
         Expanded(
           child: TextField(
@@ -131,7 +136,10 @@ class TextSettingItem extends StatelessWidget {
         Padding(padding: const EdgeInsets.only(right: 20), child: saveButton()),
       ],
       columnChildren: [
-        Text(label, style: const TextStyle(fontSize: 18)),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 18),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: TextField(
@@ -168,20 +176,23 @@ class PageSettingItem extends StatelessWidget {
 
     return SettingItem(
       rowChildren: [
-        const SizedBox(width: 16),
-        Expanded(child: Text(label, style: const TextStyle(fontSize: 18))),
+        const SizedBox(width: 24),
+        Expanded(
+          child: Text(
+            label,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
         const SizedBox(width: 16),
         Expanded(
           child: Text(status, style: TextStyle(fontSize: 14)),
         ),
         const SizedBox(width: 16),
-        Expanded(
-          child: IconButton(
-            icon: Icon(Icons.arrow_forward_ios),
-            onPressed: onPressed,
-          ),
+        IconButton(
+          icon: Icon(Icons.arrow_forward_ios),
+          onPressed: onPressed,
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 40),
       ],
       columnChildren: [
         Row(
@@ -190,7 +201,10 @@ class PageSettingItem extends StatelessWidget {
             SizedBox(width: 40),
             Column(
               children: [
-                Text(label, style: const TextStyle(fontSize: 18)),
+                Text(
+                  label,
+                  style: const TextStyle(fontSize: 18),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   child: Text(status, style: TextStyle(fontSize: 14)),

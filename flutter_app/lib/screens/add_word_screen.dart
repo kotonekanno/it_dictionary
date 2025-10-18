@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../widgets/centered_max_width.dart';
 import '../utils/add_word_actions.dart';
 import '../widgets/word_input_form.dart';
+import '../widgets/inner_header.dart';
 
 class AddWordScreen extends StatefulWidget {
   const AddWordScreen({super.key});
@@ -27,10 +28,7 @@ class AddWordScreenState extends State<AddWordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Word'),
-        centerTitle: true,
-      ),
+      appBar: InnerHeader(title: 'Add Word'),
       body: CenteredMaxWidth(
         maxWidth: 600,
         child: Shortcuts(

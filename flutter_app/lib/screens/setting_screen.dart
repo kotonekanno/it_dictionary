@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/setting_provider.dart';
 import '../widgets/centered_max_width.dart';
 import '../widgets/setting_item.dart';
+import '../widgets/inner_header.dart';
 import '../utils/setting_actions.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -22,10 +23,7 @@ class SettingScreen extends StatelessWidget {
     final subKeyController = TextEditingController(text: wordProvider.subKey);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Setting'),
-        centerTitle: true,
-      ),
+      appBar: InnerHeader(title: 'Setting'),
       body: CenteredMaxWidth(
         maxWidth: 800,
         child: SingleChildScrollView(
