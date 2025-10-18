@@ -26,5 +26,4 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.indigo,
     );
   }
-
 }

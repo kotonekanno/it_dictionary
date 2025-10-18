@@ -4,6 +4,7 @@ import '../providers/word_provider.dart';
 import '../widgets/centered_max_width.dart';
 import '../widgets/word_tile.dart';
 import '../widgets/search_bar.dart';
+import '../widgets/inner_header.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     final wordProvider = context.read<WordProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Search Word'), centerTitle: true),
+      appBar: InnerHeader(title: 'Search Word'),
       floatingActionButton:
         FloatingActionButton(
           onPressed: () {

@@ -6,12 +6,13 @@ Read this in English: [README.md](README.md)
 <!-- omit in toc -->
 ### 目次
 
-- [Overview](#overview)
-- [Features](#features)
-- [Usage](#usage)
-  - [Windows (Desktop)](#windows-desktop)
-  - [Web browser](#web-browser)
-- [Directory Structure](#directory-structure)
+- [概要](#概要)
+- [機能](#機能)
+- [実行方法](#実行方法)
+  - [Windows (デスクトップ)](#windows-デスクトップ)
+  - [Webブラウザ](#webブラウザ)
+  - [Node.js server](#nodejs-server)
+- [ディレクトリ構成](#ディレクトリ構成)
 
 ## 概要
 
@@ -32,40 +33,70 @@ Read this in English: [README.md](README.md)
 ### Windows (デスクトップ)
 
 1. リポジトリをクローン
-  ```bash
-  git clone https://github.com/kotonekanno/it_dictionary
-  ```
-  ```bash
-  cd <path/to/the/directory>
-  ```
+```bash
+git clone https://github.com/kotonekanno/it_dictionary
+```
+
 2. Flutterをインストール：[Flutter公式](https://docs.flutter.dev/get-started)
-3. 依存関係を取得
-  ```bash
-  flutter pub get
-  ```
-4. 実行
-  ```bash
-  flutter run -d windows
-  ```
+
+3. `it_dictionary/flutter_app`に移動
+```bash
+cd <path/to/the/directory>
+```
+
+4. 依存関係を取得
+```bash
+flutter pub get
+```
+
+5. 実行
+```bash
+flutter run -d windows
+```
 
 ### Webブラウザ
 
 1. リポジトリをクローン
-  ```bash
-  git clone https://github.com/kotonekanno/it_dictionary
-  ```
-  ```bash
-  cd <path/to/the/directory>
-  ```
+```bash
+git clone https://github.com/kotonekanno/it_dictionary
+```
+
 2. Flutterをインストール：[Flutter公式](https://docs.flutter.dev/get-started)
-3. 依存関係を取得
-  ```bash
-  flutter pub get
-  ```
-4. 実行
-  ```bash
-  flutter run -d chrome
-  ```
+
+3. `it_dictionary/flutter_app`に移動
+```bash
+cd <path/to/the/directory>
+```
+
+4. 依存関係を取得
+```bash
+flutter pub get
+```
+
+5. 実行
+```bash
+flutter run -d chrome
+```
+
+### Node.js server
+
+オンライン機能を使うには、以下の手順でNode.jsサーバーを実行してください
+
+1. `it_dictionary/js_server`に移動
+```bash
+cd path/to/it_dictionary/js_server
+```
+
+2. 依存関係をインストール
+```bash
+npm install bcrypt body-parser cors express jsonwebtoken mysql2
+```
+
+
+3. 実行
+``` bash
+node server.js
+```
 
 ## ディレクトリ構成
 
@@ -78,17 +109,17 @@ it_dictionary/
 ├── windows/                        # Windowsプラットフォーム用ファイル
 ├── web/                            # Webプラットフォーム用ファイル
 ├── assets/                         # 静的アセット
-│   ├── fonts/                     # カスタムフォント
-│   └── default_words.csv          # デフォルトのCSVデータ
+│   ├── fonts/                      # カスタムフォント
+│   └── default_words.csv           # デフォルトのCSVデータ
 ├── lib/                            # メインのソースコード
-│   ├── models/                    # CSV関連モデル
-│   ├── providers/                 # Providerによる状態管理
-│   ├── screens/                   # ページ／画面
-│   ├── services/                  # サービス／ビジネスロジック
-│   ├── utils/                     # ユーティリティ関数
-│   ├── widgets/                   # 再利用可能なUIコンポーネント
-│   ├── app.dart                   # アプリのルートウィジェット
-│   └── main.dart                  # エントリーポイント
+│   ├── models/                     # CSV関連モデル
+│   ├── providers/                  # Providerによる状態管理
+│   ├── screens/                    # ページ／画面
+│   ├── services/                   # サービス／ビジネスロジック
+│   ├── utils/                      # ユーティリティ関数
+│   ├── widgets/                    # 再利用可能なUIコンポーネント
+│   ├── app.dart                    # アプリのルートウィジェット
+│   └── main.dart                   # エントリーポイント
 ├── test/                           # ウィジェットテスト
 ├── .dart_tool/                     # Flutter & Dartツールの自動生成ファイル
 ├── .idea/                          # IDEプロジェクト設定
@@ -99,5 +130,10 @@ it_dictionary/
 ├── it_dictionary.iml
 ├── pubspec.yaml                    # 依存関係とプロジェクト設定
 ├── pubspec.lock
-└── README.ja.md                    # このファイル
+
+js_server/
+├── node_modules/                   # インストール済みのNode.jsモジュール
+├── package-lock.json
+├── package.json                    # メタデータとスクリプト
+└── server.js                       # Expressサーバー
 ```

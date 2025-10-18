@@ -105,10 +105,10 @@ class WordListWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(mainKey, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                        Text(mainKey, style: const TextStyle(fontSize: 16)),
                         Padding(
                           padding: const EdgeInsets.only(right: 70),
-                          child: Text(subKey, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                          child: Text(subKey, style: const TextStyle(fontSize: 16)),
                         ),
                       ],
                     ),

@@ -1,0 +1,44 @@
+# =========================
+# Node.js / Express 基本設定
+# =========================
+
+# 依存関係
+/node_modules/
+
+# 環境変数・機密情報
+.env
+.env.*.local
+
+# ビルド成果物
+/dist/
+/build/
+/out/
+
+# キャッシュ・ログ
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# IDE関連
+.vscode/
+.idea/
+
+# OS関連
+.DS_Store
+Thumbs.db
+
+# テスト関連
+/coverage/
+
+# TypeScriptの場合
+*.tsbuildinfo
+
+# その他一時ファイル
+*.log
+*.tmp
+*.bak
+
+# Docker関連（使ってる場合）
+/docker-compose.override.yml
